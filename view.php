@@ -12,6 +12,13 @@
   }
 ?>
 </select>
+
+<input type=radio name=limit value=10 checked>10개
+<input type=radio name=limit value=20>20개
+<input type=radio name=limit value=30>30개
+
+<input type=radio name=order value=asc checked>오름차순정렬
+<input type=radio name=order value=desc>내림차순정렬
 <input type=submit value=확인>
 </form>
 
@@ -25,7 +32,7 @@ if(isset($_POST['did'])) {
 }
 
    //데이터를 읽어오는 쿼리를 작성한다
-   $query = "select * from sensor where did='".$_POST['did']."';";
+   $query = "select * from sensor where did='".$_POST['did']."' order by num ".$_POST['order']." limit ".$_POST['limit'].";";
    //쿼리를 실행한다
    $result = mysqli_query($conn, $query);
    //결과를 출력한다
